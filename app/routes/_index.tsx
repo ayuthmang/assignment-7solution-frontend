@@ -1,34 +1,41 @@
 import type { MetaFunction } from "@remix-run/node";
-import { useTodosContext, type Todo } from "../providers/todos-provider";
+import { useTodosContext, type Todo } from "../providers/todos/todos-provider";
 
 export const meta: MetaFunction = () => {
   return [
-    { title: "New Remix App" },
-    { name: "description", content: "Welcome to Remix!" },
+    { title: "Auto Delete Todo List" },
+    { name: "description", content: "Welcome to Auto Delete Todo List" },
   ];
 };
 
 export default function Index() {
-  const { todos, vegetables, fruits } = useTodosContext();
+  const {
+    todos,
+    vegetables,
+    fruits,
+    handleOnTodoClick,
+    handleOnFruitClick,
+    handleOnVegetableClick,
+  } = useTodosContext();
 
   return (
     <div className="grid grid-cols-3 gap-x-4">
       <Column>
         <ColumnHeader>Please Select</ColumnHeader>
         <div>
-          <List items={todos} />
+          <List items={todos} onTodoClick={handleOnTodoClick} />
         </div>
       </Column>
       <Column>
         <ColumnHeader>Fruit</ColumnHeader>
         <div>
-          <List items={fruits} />
+          <List items={fruits} onTodoClick={handleOnFruitClick} />
         </div>
       </Column>
       <Column>
         <ColumnHeader>Vegetable</ColumnHeader>
         <div>
-          <List items={vegetables} />
+          <List items={vegetables} onTodoClick={handleOnVegetableClick} />
         </div>
       </Column>
     </div>
@@ -47,9 +54,13 @@ function ColumnHeader({ children }: { children: React.ReactNode }) {
   return <h2 className="text-xl font-bold">{children}</h2>;
 }
 
-function List({ items }: { items: Todo[] }) {
-  const { onTodoClick } = useTodosContext();
-
+function List({
+  items,
+  onTodoClick,
+}: {
+  items: Todo[];
+  onTodoClick: (todo: Todo) => void;
+}) {
   return (
     <ul className="space-y-4">
       {items.map((item) => (
