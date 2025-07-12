@@ -8,6 +8,7 @@ import {
 import type { LinksFunction } from "@remix-run/node";
 
 import "./tailwind.css";
+import { TodosProvider } from "./providers/todos-provider";
 
 export const links: LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -31,7 +32,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Meta />
         <Links />
       </head>
-      <body>
+      <body suppressHydrationWarning>
         {children}
         <ScrollRestoration />
         <Scripts />
@@ -40,6 +41,12 @@ export function Layout({ children }: { children: React.ReactNode }) {
   );
 }
 
+
+
 export default function App() {
-  return <Outlet />;
+  return (
+    <TodosProvider>
+      <Outlet />
+    </TodosProvider>
+  );
 }
