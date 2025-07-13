@@ -20,22 +20,22 @@ export default function Index() {
   } = useTodosContext();
 
   return (
-    <div className="container mx-auto">
+    <div className="container mx-auto my-8">
       <div className="grid grid-cols-3 gap-x-4">
         <Column>
-          <ColumnHeader>Please Select</ColumnHeader>
+          <ColumnHeader>👉 Please Select</ColumnHeader>
           <div>
             <List items={todos} onTodoClick={handleOnTodoClick} />
           </div>
         </Column>
         <Column>
-          <ColumnHeader>Fruit</ColumnHeader>
+          <ColumnHeader>🍉 Fruit</ColumnHeader>
           <div>
             <List items={fruits} onTodoClick={handleOnFruitClick} />
           </div>
         </Column>
         <Column>
-          <ColumnHeader>Vegetable</ColumnHeader>
+          <ColumnHeader>🥬 Vegetable</ColumnHeader>
           <div>
             <List items={vegetables} onTodoClick={handleOnVegetableClick} />
           </div>
@@ -47,14 +47,14 @@ export default function Index() {
 
 function Column({ children }: { children: React.ReactNode }) {
   return (
-    <div className="flex flex-col gap-3 border border-gray-100 border-solid">
+    <div className="flex flex-col gap-3 border-4 border-gray-100 border-solid">
       {children}
     </div>
   );
 }
 
 function ColumnHeader({ children }: { children: React.ReactNode }) {
-  return <h2 className="text-xl font-bold">{children}</h2>;
+  return <h2 className="text-lg/8 font-bold bg-gray-100 ">{children}</h2>;
 }
 
 function List({
