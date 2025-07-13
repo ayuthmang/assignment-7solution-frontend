@@ -20,7 +20,7 @@ export default function Index() {
   } = useTodosContext();
 
   return (
-    <div className="container mx-auto my-8 flex flex-col gap-4 px-4">
+    <div className="container mx-auto my-8 flex flex-col gap-4 p-4">
       <section className="flex flex-col gap-4">
         <SectionHeader>1. Auto Delete Todo List</SectionHeader>
         <div className="grid grid-cols-3 gap-x-4">
