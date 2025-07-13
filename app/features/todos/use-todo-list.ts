@@ -1,6 +1,7 @@
 import { useCallback } from "react";
 import { useImmer } from "use-immer";
-import type { Todo } from "./todos-provider";
+
+import {Todo} from "~/features/todos/types";
 
 
 /**
