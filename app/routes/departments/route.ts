@@ -123,6 +123,5 @@ export async function loader() {
     },
     {} as Record<string, ReturnType<typeof summarizeUsers>>
   );
-  console.log({ summarizedData });
   return data(summarizedData);
 }
