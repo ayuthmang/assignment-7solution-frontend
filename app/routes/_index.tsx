@@ -1,6 +1,6 @@
 import type { MetaFunction } from "@remix-run/node";
 import { useTodosContext } from "~/features/todos/todos-provider";
-import {Todo} from "~/features/todos/types";
+import { Todo } from "~/features/todos/types";
 
 export const meta: MetaFunction = () => {
   return [
@@ -20,29 +20,46 @@ export default function Index() {
   } = useTodosContext();
 
   return (
-    <div className="container mx-auto my-8">
-      <div className="grid grid-cols-3 gap-x-4">
-        <Column>
-          <ColumnHeader>👉 Please Select</ColumnHeader>
-          <div>
-            <List items={todos} onTodoClick={handleOnTodoClick} />
-          </div>
-        </Column>
-        <Column>
-          <ColumnHeader>🍉 Fruit</ColumnHeader>
-          <div>
-            <List items={fruits} onTodoClick={handleOnFruitClick} />
-          </div>
-        </Column>
-        <Column>
-          <ColumnHeader>🥬 Vegetable</ColumnHeader>
-          <div>
-            <List items={vegetables} onTodoClick={handleOnVegetableClick} />
-          </div>
-        </Column>
-      </div>
+    <div className="container mx-auto my-8 flex flex-col gap-4">
+      <section className="flex flex-col gap-4
+      ">
+        <SectionHeader>1. Auto Delete Todo List</SectionHeader>
+        <div className="grid grid-cols-3 gap-x-4">
+          <Column>
+            <ColumnHeader>👉 Please Select</ColumnHeader>
+            <div>
+              <List items={todos} onTodoClick={handleOnTodoClick} />
+            </div>
+          </Column>
+          <Column>
+            <ColumnHeader>🍉 Fruit</ColumnHeader>
+            <div>
+              <List items={fruits} onTodoClick={handleOnFruitClick} />
+            </div>
+          </Column>
+          <Column>
+            <ColumnHeader>🥬 Vegetable</ColumnHeader>
+            <div>
+              <List items={vegetables} onTodoClick={handleOnVegetableClick} />
+            </div>
+          </Column>
+        </div>
+      </section>
+
+      <hr className="border-t border-dashed border-gray-400" />
+
+      <section className="flex flex-col gap-4">
+        <SectionHeader>2) Department API</SectionHeader>
+        <a className="underline text-blue-400" href="departments">
+          Click here
+        </a>
+      </section>
     </div>
   );
+}
+
+function SectionHeader({ children }: { children: React.ReactNode }) {
+  return <h2 className="text-2xl/8 font-bold bg-gray-100">{children}</h2>;
 }
 
 function Column({ children }: { children: React.ReactNode }) {
@@ -54,7 +71,7 @@ function Column({ children }: { children: React.ReactNode }) {
 }
 
 function ColumnHeader({ children }: { children: React.ReactNode }) {
-  return <h2 className="text-lg/8 font-bold bg-gray-100 ">{children}</h2>;
+  return <h3 className="text-lg/8 font-bold bg-gray-100 ">{children}</h3>;
 }
 
 function List({
