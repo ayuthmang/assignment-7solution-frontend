@@ -85,8 +85,6 @@ export function TodosProvider({children}: { children: React.ReactNode }) {
         [addTodo, removeVegetable]
     );
 
-    console.log({todos, vegetables, fruits});
-
     return (
         <TodosContext.Provider
             value={{

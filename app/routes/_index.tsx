@@ -1,5 +1,6 @@
 import type { MetaFunction } from "@remix-run/node";
-import { useTodosContext, type Todo } from "../providers/todos/todos-provider";
+import { useTodosContext } from "~/features/todos/todos-provider";
+import {Todo} from "~/features/todos/types";
 
 export const meta: MetaFunction = () => {
   return [
@@ -19,25 +20,27 @@ export default function Index() {
   } = useTodosContext();
 
   return (
-    <div className="grid grid-cols-3 gap-x-4">
-      <Column>
-        <ColumnHeader>Please Select</ColumnHeader>
-        <div>
-          <List items={todos} onTodoClick={handleOnTodoClick} />
-        </div>
-      </Column>
-      <Column>
-        <ColumnHeader>Fruit</ColumnHeader>
-        <div>
-          <List items={fruits} onTodoClick={handleOnFruitClick} />
-        </div>
-      </Column>
-      <Column>
-        <ColumnHeader>Vegetable</ColumnHeader>
-        <div>
-          <List items={vegetables} onTodoClick={handleOnVegetableClick} />
-        </div>
-      </Column>
+    <div className="container mx-auto">
+      <div className="grid grid-cols-3 gap-x-4">
+        <Column>
+          <ColumnHeader>Please Select</ColumnHeader>
+          <div>
+            <List items={todos} onTodoClick={handleOnTodoClick} />
+          </div>
+        </Column>
+        <Column>
+          <ColumnHeader>Fruit</ColumnHeader>
+          <div>
+            <List items={fruits} onTodoClick={handleOnFruitClick} />
+          </div>
+        </Column>
+        <Column>
+          <ColumnHeader>Vegetable</ColumnHeader>
+          <div>
+            <List items={vegetables} onTodoClick={handleOnVegetableClick} />
+          </div>
+        </Column>
+      </div>
     </div>
   );
 }
